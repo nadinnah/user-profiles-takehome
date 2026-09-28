@@ -24,7 +24,7 @@ GENDER_CHOICES={
 
 #ADD VALIDATIONS
 class UserProfile(models.Model):
-    user= models.OneToOneField(User, on_delete=models.CASCADE) #extending the user model, cascade whenever user deleted the userprofile is also deleted
+    user= models.OneToOneField(User, on_delete=models.CASCADE, related_name="profile") #extending the user model, cascade whenever user deleted the userprofile is also deleted
     phone= models.CharField(max_length=30, null=True,blank=True, validators=[validate_phone_number]) #optional, IntegerField() would drop 0 in the beginning, ex: 01151332456 would be 1151332456 so charfield
     gender= models.CharField(max_length=10, choices=GENDER_CHOICES)
     date_of_birth= models.DateField()

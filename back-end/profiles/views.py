@@ -1,6 +1,8 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from rest_framework import generics
+from django.contrib.auth.models import User
+from .serializers import UserSerializer
 
-#here we write the endpoints
-def main(request):
-    return HttpResponse("<h1>Hello nadin</h1>") #url point to it
+class UserView(generics.CreateAPIView):
+    queryset= User.objects.all
+    serializer_class= UserSerializer
