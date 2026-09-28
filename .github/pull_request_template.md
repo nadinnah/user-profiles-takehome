@@ -5,14 +5,14 @@
 ## Checklist
 
 ### Backend
-- [ ] Django project set up with SQLite
-- [ ] `UserProfile` model with one-to-one link to Django `User`
+- [.] Django project set up with SQLite
+- [.] `UserProfile` model with one-to-one link to Django `User`
 - [ ] Optional `profile_image` field with media storage configured
 - [ ] Model registered in Django admin
 - [ ] List endpoint with pagination (`page`, `page_size`, total count) and `search`
 - [ ] Retrieve / Create / Update / Delete endpoints
 - [ ] Create / update accept optional image upload (multipart)
-- [ ] Import endpoint handling invalid records without crashing
+- [ ] Import endpoint handling invalid records without crashing (try catch)
 - [ ] Input validation with useful error messages
 
 ### Frontend
@@ -62,9 +62,11 @@
 <!-- Tutorials, docs, AI tools, etc. Be honest; it's fine to use them. -->
 
 ## Time spent
-
+2:30pm-3:50, 6:30-
+core:
+additional:
 <!-- Approximate hours -->
 
 ## What I'd improve with more time
-
+The UI could be improved better with more time
 <!-- ... -->

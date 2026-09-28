@@ -14,8 +14,9 @@ class UserSerializer(serializers.ModelSerializer):
         model=User
         fields=('id','username','email','first_name','last_name','profile')
 
-    def create(self, validated_data):
+    #needs fixing
+    def create(self, validated_data): #overriding create() to support nested json otherwise will throw NotImplementedError
         profile_data = validated_data.pop('profile')
-        user = User.objects.create(**validated_data)
-        UserProfile.objects.create(user=user, **profile_data)
+        user = User.objects.create(**validated_data) #The ** syntax unpacks the dictionary key-value pairs into keyword arguments. ex: User.objects.create(username='ahmad.smith', email='ahmad.smith@example.com', ...)
+        UserProfile.objects.create(user=user, **profile_data) #sets the foreign key / one-to-one link pointing to the user
         return user
