@@ -1,9 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 
 const Form = (props) => {
   const { register, handleSubmit } = useForm();
-  const onSubmit = async (data) => {}
+  const [isLoading, setLoading]=useState(false)
+  const onSubmit = async (data) => {
+    console.log(data);
+    setLoading(x=>!x)
+  }
+
+
 
   //if data present add them in input, otherwise null
 
@@ -11,7 +17,7 @@ const Form = (props) => {
     <form onSubmit={handleSubmit(onSubmit)}>
       <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "10px" }}>
       <label>Profile image <input {...register("profile.profile_image")} type="file" /></label>
-      <label>Username <input {...register("username")} type="text" placeholder="Enter your Username" /></label>
+      <label>Username <input {...register("username")} type="text" placeholder="Enter your Username" required/></label>
       <label>Email <input {...register("email")} type="email" placeholder="Enter your Email" /></label>
       <label>First Name <input {...register("first_name")} type="text" placeholder="Enter your First Name" /></label>
       <label>Last Name <input {...register("last_name")} type="text" placeholder="Enter your Last Name" /></label>
@@ -31,7 +37,7 @@ const Form = (props) => {
         Active<input {...register("profile.is_active")} type="checkbox" defaultChecked/> 
       </label>
 
-      <button type="submit">{props.SubmitText}</button>
+      <button type="submit" disabled={isLoading}  >{props.SubmitText}</button>
     </div></form>
   );
 };

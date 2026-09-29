@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import AxiosInstance from "../helper-api/axios";
 
 const dummy_profiles=[
     {

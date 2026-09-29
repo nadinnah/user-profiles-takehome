@@ -1,7 +1,10 @@
 from django.urls import path
-from .views import UserView
+from .views import UserViewSet
+from rest_framework.routers import DefaultRouter
 
-urlpatterns = [
-    path('home', UserView.as_view())
-    #path('home',main) will get page not found unless i add /home in the url
-]
+router= DefaultRouter()
+router.register(
+    'user', UserViewSet, basename='user'
+)
+
+urlpatterns = router.urls
