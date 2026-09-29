@@ -62,8 +62,9 @@
 <!-- Tutorials, docs, AI tools, etc. Be honest; it's fine to use them. -->
 
 ## Time spent
-2:30pm-3:50, 6:30-
-core:
+
+core: 
+first day 2:30pm-3:50, 8pm-2am 
 additional:
 <!-- Approximate hours -->
 
