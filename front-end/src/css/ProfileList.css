@@ -1,0 +1,13 @@
+td,th{
+    padding: 10px 50px 
+}
+
+button{
+   display: flex;
+   border-radius: 30px;
+   padding: 10px;
+   background-color: rgb(216, 180, 180);
+   color:white;
+   align-items: center;
+   margin: 20px 0;
+}
