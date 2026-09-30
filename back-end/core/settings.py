@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'corsheaders',
     'profiles.apps.ProfilesConfig',
-    'rest_framework'
+    'rest_framework',
+    'django_filters'
 ]
 
 CORS_ALLOWED_ORIGINS = [
@@ -118,6 +119,11 @@ USE_I18N = True
 
 USE_TZ = True
 
+REST_FRAMEWORK = {
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 5
+}
+
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/6.1/howto/static-files/
@@ -133,3 +139,7 @@ MAILERS = {
         'BACKEND': 'django.core.mail.backends.console.EmailBackend',
     },
 }
+
+#Media
+MEDIA_ROOT= BASE_DIR / 'media'
+MEDIA_URL= '/media/'

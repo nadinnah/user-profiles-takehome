@@ -18,6 +18,11 @@ const Row = ({ label, value }) => (
   </div>
 );
 
+const MEDIA_BASE = "http://127.0.0.1:8000";
+
+const imageUrl = (path) =>
+  !path ? null : path.startsWith("http") ? path : `${MEDIA_BASE}${path}`;
+
 const ProfileDetails=()=>{
     const { id } = useParams();
     const navigate = useNavigate();
@@ -38,6 +43,7 @@ const ProfileDetails=()=>{
         .finally(() => setLoading(false));
     }, [id]);
 
+
     const handleDelete = async () => {
         setDeleting(true);
         try {
@@ -56,8 +62,8 @@ const ProfileDetails=()=>{
     if (!user) return null;
 
     const p = user.profile || {};
-    const image = p.profile_image || user.profile_image;
-
+    const rawImage = p.profile_image || user.profile_image;
+    const image = imageUrl(rawImage);
 
     return( 
          

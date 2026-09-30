@@ -1,17 +1,24 @@
 from django.shortcuts import render
-from rest_framework import viewsets, permissions, generics
+from rest_framework import viewsets, permissions, filters 
 from django.contrib.auth.models import User
 from .models import *
 from django.shortcuts import get_object_or_404
 from .serializers import UserSerializer
 from rest_framework.response import Response
 from rest_framework.decorators import action
+from rest_framework.pagination import PageNumberPagination
+from django_filters.rest_framework import DjangoFilterBackend
 
 
-class UserViewSet(viewsets.ViewSet): 
+class UserViewSet(viewsets.GenericViewSet): 
     permission_classes= [permissions.AllowAny] #as long as they come from react front-end
-    queryset= User.objects.all()
+    queryset= User.objects.order_by('pk')
     serializer_class= UserSerializer
+    filter_backends=[DjangoFilterBackend, filters.SearchFilter]
+    search_fields=['first_name', 'last_name','username','email']
+    pagination_class= PageNumberPagination
+    pagination_class.page_size=10
+    pagination_class.max_page_size = 100
 
 
     @action(detail=False, methods=['post'], url_path='import')
@@ -41,7 +48,11 @@ class UserViewSet(viewsets.ViewSet):
         })
 
     def list(self,request): #get list
-        queryset= User.objects.all()
+        queryset= self.filter_queryset(self.get_queryset())
+        page = self.paginate_queryset(queryset) 
+        if page is not None:
+            serializer = self.get_serializer(page, many=True)
+            return self.get_paginated_response(serializer.data)
         serializer= self.serializer_class(queryset, many=True) #many records can be added
         return Response(serializer.data) #get serialized data to front-end
 
